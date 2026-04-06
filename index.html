@@ -295,6 +295,108 @@
 
     .hidden { display: none !important; }
 
+    /* QUOTE TAB */
+    #quoteView { display: none; flex-direction: column; flex: 1; overflow-y: auto; }
+    #quoteView.visible { display: flex; }
+    .quote-wrap { padding: 20px 16px 60px; display: flex; flex-direction: column; gap: 16px; max-width: 700px; margin: 0 auto; width: 100%; }
+    .quote-section-label {
+      font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--text-muted); font-weight: 600; margin-bottom: 6px;
+    }
+    .quote-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 16px;
+    }
+    .quote-input {
+      width: 100%; background: #0a1520; border: 1px solid var(--border-light);
+      color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+      border-radius: var(--radius-sm); padding: 13px 14px;
+      outline: none; transition: border-color 0.2s;
+      -webkit-appearance: none; appearance: none;
+    }
+    .quote-input:focus { border-color: var(--blue-light); }
+    .quote-input::placeholder { color: var(--text-dim); }
+    select.quote-input { cursor: pointer; }
+    .rate-row { display: flex; align-items: center; gap: 10px; }
+    .rate-prefix {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem;
+      font-weight: 700; color: var(--text-muted); flex-shrink: 0;
+    }
+    .rate-input {
+      width: 110px; background: #0a1520; border: 1px solid var(--border-light);
+      color: var(--text); font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem; font-weight: 700;
+      border-radius: var(--radius-sm); padding: 10px 12px;
+      outline: none; transition: border-color 0.2s; -webkit-appearance: none;
+      text-align: center;
+    }
+    .rate-input:focus { border-color: var(--blue-light); }
+    .rate-note { font-size: 0.78rem; color: var(--text-muted); flex: 1; }
+    #calcBtn {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: var(--red); color: #fff;
+      font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600;
+      border: none; border-radius: 999px; padding: 16px;
+      cursor: pointer; width: 100%; -webkit-appearance: none;
+      transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 0 30px rgba(174,25,50,0.3);
+    }
+    #calcBtn:active { transform: scale(0.97); background: var(--red-dim); }
+    #calcBtn.loading { pointer-events: none; background: var(--red-dim); }
+    #calcBtn svg { width: 18px; height: 18px; }
+    /* RESULT CARD */
+    #quoteResult { display: none; }
+    #quoteResult.visible { display: block; }
+    .result-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
+      animation: slideUp 0.3s ease both;
+    }
+    .result-header {
+      background: linear-gradient(135deg, var(--blue-dark), #0d1f35);
+      padding: 14px 16px; border-bottom: 1px solid var(--border);
+    }
+    .result-header-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em; color: #5fa8d8; font-weight: 600; }
+    .result-dealer-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 700; color: var(--text); margin-top: 2px; }
+    .result-address { font-size: 0.76rem; color: var(--text-muted); margin-top: 2px; }
+    .result-rows { padding: 4px 0; }
+    .result-row {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 16px; border-bottom: 1px solid var(--border);
+    }
+    .result-row:last-child { border-bottom: none; }
+    .result-row-label { font-size: 0.82rem; color: var(--text-muted); font-weight: 500; }
+    .result-row-label small { display: block; font-size: 0.7rem; color: var(--text-dim); margin-top: 2px; }
+    .result-row-val {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem;
+      font-weight: 800; letter-spacing: 0.02em; color: var(--text); text-align: right;
+    }
+    .result-row-val span { font-size: 0.75rem; font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--text-muted); display: block; }
+    .result-row.highlight .result-row-val { color: var(--red); }
+    .result-row.highlight-blue .result-row-val { color: #5fa8d8; }
+    .result-row.total-row { background: rgba(174,25,50,0.06); }
+    .result-divider { height: 1px; background: var(--border); margin: 0; }
+    .result-customer { padding: 10px 16px; background: rgba(17,73,116,0.1); border-bottom: 1px solid var(--border); }
+    .result-customer-label { font-size: 0.63rem; text-transform: uppercase; letter-spacing: 0.1em; color: #5fa8d8; font-weight: 600; }
+    .result-customer-addr { font-size: 0.82rem; color: var(--text); margin-top: 2px; }
+    .quote-actions { display: flex; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--border); }
+    .btn-print { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 11px; border-radius: var(--radius-sm); background: rgba(17,73,116,0.25);
+      border: 1px solid var(--border-light); color: var(--text);
+      font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; }
+    .btn-recalc { flex: 1; display: flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 11px; border-radius: var(--radius-sm); background: rgba(174,25,50,0.15);
+      border: 1px solid rgba(174,25,50,0.3); color: var(--red);
+      font-family: 'DM Sans', sans-serif; font-size: 0.82rem; font-weight: 600; cursor: pointer; }
+    .quote-error { background: rgba(174,25,50,0.1); border: 1px solid rgba(174,25,50,0.3); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 0.84rem; color: #ff7a8a; display: none; }
+    .quote-error.visible { display: block; }
+    @media print {
+      header, .view-tabs, .quote-actions, #calcBtn, .quote-card:not(.result-card) { display: none !important; }
+      #quoteResult { display: block !important; }
+      body { background: #fff; color: #000; }
+    }
+
+
     @media (min-width: 640px) {
       #dealerList { max-width: 700px; margin: 0 auto; width: 100%; padding-left: 20px; padding-right: 20px; }
     }
@@ -322,6 +424,10 @@
     <button class="tab-btn" id="tabMap" onclick="switchTab('map')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
       Map
+    </button>
+    <button class="tab-btn" id="tabQuote" onclick="switchTab('quote')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+      Delivery Quote
     </button>
   </div>
 
@@ -386,6 +492,95 @@
     <a href="https://tigongolfcarts.com" class="error-browse">Browse All Locations →</a>
   </div>
 
+  <!-- QUOTE VIEW -->
+  <section id="quoteView">
+    <div class="quote-wrap">
+
+      <div>
+        <div class="quote-section-label">Customer Address</div>
+        <div class="quote-card">
+          <input id="customerAddr" class="quote-input" type="text"
+            placeholder="Enter customer delivery address..."
+            autocomplete="off" />
+        </div>
+      </div>
+
+      <div>
+        <div class="quote-section-label">TIGON Dealership</div>
+        <div class="quote-card">
+          <select id="dealerSelect" class="quote-input">
+            <option value="">— Select a Dealership —</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <div class="quote-section-label">Delivery Rate</div>
+        <div class="quote-card">
+          <div class="rate-row">
+            <span class="rate-prefix">$</span>
+            <input id="rateInput" class="rate-input" type="number" value="6" min="0" step="0.25" />
+            <span class="rate-note">per mile &mdash; edit to adjust quote</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-error" id="quoteError"></div>
+
+      <button id="calcBtn" onclick="calcDelivery()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+          <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+        </svg>
+        Calculate Delivery Quote
+      </button>
+
+      <!-- RESULT -->
+      <div id="quoteResult">
+        <div class="result-card">
+          <div class="result-header">
+            <div class="result-header-label">📍 Delivering From</div>
+            <div class="result-dealer-name" id="rDealerName"></div>
+            <div class="result-address" id="rDealerAddr"></div>
+          </div>
+          <div class="result-customer">
+            <div class="result-customer-label">🏠 Delivering To</div>
+            <div class="result-customer-addr" id="rCustomerAddr"></div>
+          </div>
+          <div class="result-rows">
+            <div class="result-row highlight-blue">
+              <div class="result-row-label">One-Way Distance<small>Dealer → Customer</small></div>
+              <div class="result-row-val" id="rOneMiles">— <span>miles</span></div>
+            </div>
+            <div class="result-row">
+              <div class="result-row-label">Round Trip Distance<small>Including return</small></div>
+              <div class="result-row-val" id="rRoundMiles">— <span>miles</span></div>
+            </div>
+            <div class="result-divider"></div>
+            <div class="result-row highlight total-row">
+              <div class="result-row-label">One-Way Delivery Price<small id="rRateNote1"></small></div>
+              <div class="result-row-val" id="rOnePrice">—</div>
+            </div>
+            <div class="result-row total-row" style="background:rgba(17,73,116,0.08)">
+              <div class="result-row-label">Round Trip Delivery Price<small id="rRateNote2"></small></div>
+              <div class="result-row-val" id="rRoundPrice" style="color:#5fa8d8">—</div>
+            </div>
+          </div>
+          <div class="quote-actions">
+            <button class="btn-print" onclick="window.print()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Print Quote
+            </button>
+            <button class="btn-recalc" onclick="resetQuote()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 12a9 9 0 019-9 9.75 9.75 0 016.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+              New Quote
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <footer>
     &copy; 2025 TIGON Golf Carts LLC &middot;
     <a href="tel:18448446638">1-844-844-6638</a> &middot;
@@ -394,7 +589,7 @@
 </div>
 
 <!-- Google Maps API -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJODrPxHuMV8QIN_xF9h3yyumpXchikyE&callback=initMapAPI" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJODrPxHuMV8QIN_xF9h3yyumpXchikyE&libraries=places&callback=initMapAPI" async defer></script>
 
 <script>
 // ── STATE ──
@@ -522,14 +717,17 @@ function showMore(){
 function switchTab(tab){
   document.getElementById('tabList').classList.toggle('active',tab==='list');
   document.getElementById('tabMap').classList.toggle('active',tab==='map');
+  document.getElementById('tabQuote').classList.toggle('active',tab==='quote');
   document.getElementById('results').classList.toggle('visible',tab==='list');
   document.getElementById('results').style.display=tab==='list'?'flex':'none';
   document.getElementById('mapView').style.display=tab==='map'?'flex':'none';
+  document.getElementById('quoteView').style.display=tab==='quote'?'flex':'none';
   if(tab==='map'){ initGoogleMap(); }
+  if(tab==='quote'){ populateDealerSelect(); setTimeout(initPlacesAutocomplete,300); }
 }
 
 // ── GOOGLE MAP ──
-function initMapAPI(){ mapReady=true; }
+function initMapAPI(){ mapReady=true; initPlacesAutocomplete(); }
 
 function initGoogleMap(){
   if(!userLat){ return; }
@@ -582,6 +780,96 @@ function initGoogleMap(){
   });
 }
 
+// ── DELIVERY QUOTE ──
+function populateDealerSelect(){
+  const sel=document.getElementById('dealerSelect');
+  sel.innerHTML='<option value="">— Select a Dealership —</option>';
+  DEALERS.forEach((d,i)=>{
+    const opt=document.createElement('option');
+    opt.value=i;
+    opt.textContent=`${d.shortName}`;
+    sel.appendChild(opt);
+  });
+  // Pre-select nearest dealer if known
+  if(allSorted.length>0){
+    const nearestIdx=DEALERS.findIndex(d=>d.id===allSorted[0].id);
+    if(nearestIdx>=0) sel.value=nearestIdx;
+  }
+}
+
+function calcDelivery(){
+  const addrInput=document.getElementById('customerAddr').value.trim();
+  const dealerIdx=document.getElementById('dealerSelect').value;
+  const rate=parseFloat(document.getElementById('rateInput').value)||6;
+  const errEl=document.getElementById('quoteError');
+  errEl.classList.remove('visible');
+
+  if(!addrInput){ errEl.textContent='Please enter a customer address.'; errEl.classList.add('visible'); return; }
+  if(dealerIdx===''){ errEl.textContent='Please select a TIGON dealership.'; errEl.classList.add('visible'); return; }
+  if(!mapReady||!window.google){ errEl.textContent='Maps not loaded yet. Please wait a moment and try again.'; errEl.classList.add('visible'); return; }
+
+  const dealer=DEALERS[parseInt(dealerIdx)];
+  const btn=document.getElementById('calcBtn');
+  btn.innerHTML='<div class="spinner"></div> Calculating...';
+  btn.classList.add('loading');
+
+  const service=new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix({
+    origins:[dealer.address],
+    destinations:[addrInput],
+    travelMode:google.maps.TravelMode.DRIVING,
+    unitSystem:google.maps.UnitSystem.IMPERIAL,
+  },(resp,status)=>{
+    btn.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> Calculate Delivery Quote`;
+    btn.classList.remove('loading');
+
+    if(status!=='OK'||!resp.rows[0].elements[0]||resp.rows[0].elements[0].status!=='OK'){
+      errEl.textContent='Could not calculate route. Check the address and try again.';
+      errEl.classList.add('visible'); return;
+    }
+
+    const el=resp.rows[0].elements[0];
+    const oneMiles=el.distance.value/1609.344; // meters to miles
+    const roundMiles=oneMiles*2;
+    const onePrice=oneMiles*rate;
+    const roundPrice=roundMiles*rate;
+    const customerFormatted=el.distance.text?addrInput:addrInput;
+
+    document.getElementById('rDealerName').textContent=dealer.shortName;
+    document.getElementById('rDealerAddr').textContent=dealer.address;
+    document.getElementById('rCustomerAddr').textContent=addrInput;
+    document.getElementById('rOneMiles').innerHTML=`${oneMiles.toFixed(1)}<span>miles one-way</span>`;
+    document.getElementById('rRoundMiles').innerHTML=`${roundMiles.toFixed(1)}<span>miles round trip</span>`;
+    document.getElementById('rOnePrice').innerHTML=`$${onePrice.toFixed(2)}<span>one-way</span>`;
+    document.getElementById('rRoundPrice').innerHTML=`$${roundPrice.toFixed(2)}<span>round trip</span>`;
+    document.getElementById('rRateNote1').textContent=`${oneMiles.toFixed(1)} mi × $${rate.toFixed(2)}/mi`;
+    document.getElementById('rRateNote2').textContent=`${roundMiles.toFixed(1)} mi × $${rate.toFixed(2)}/mi`;
+    document.getElementById('quoteResult').classList.add('visible');
+    document.getElementById('quoteResult').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+}
+
+function resetQuote(){
+  document.getElementById('quoteResult').classList.remove('visible');
+  document.getElementById('customerAddr').value='';
+  document.getElementById('quoteError').classList.remove('visible');
+}
+
+// Google Places Autocomplete for customer address
+function initPlacesAutocomplete(){
+  if(!window.google||!google.maps.places) return;
+  const input=document.getElementById('customerAddr');
+  if(!input) return;
+  const ac=new google.maps.places.Autocomplete(input,{
+    componentRestrictions:{country:'us'},
+    fields:['formatted_address','geometry']
+  });
+  ac.addListener('place_changed',()=>{
+    const place=ac.getPlace();
+    if(place.formatted_address) input.value=place.formatted_address;
+  });
+}
+
 // ── ERROR / RESET ──
 function showError(msg){
   document.getElementById('landing').classList.add('hidden');
@@ -598,6 +886,8 @@ function resetToLanding(){
   document.getElementById('results').classList.remove('visible');
   document.getElementById('results').style.display='';
   document.getElementById('mapView').style.display='none';
+  document.getElementById('quoteView').style.display='none';
+  if(document.getElementById('tabQuote')) document.getElementById('tabQuote').classList.remove('active');
   document.getElementById('errorMsg').classList.remove('visible');
   document.getElementById('viewTabs').classList.add('hidden');
   document.getElementById('dealerList').innerHTML='';
