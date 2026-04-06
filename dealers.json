@@ -1,7 +1,7 @@
 [
   {
     "id": "T1",
-    "name": "TIGON Golf Carts — Hatfield, PA",
+    "name": "TIGON Golf Carts \u2014 Hatfield, PA",
     "shortName": "Hatfield, PA",
     "address": "2333 Bethlehem Pike, Hatfield, PA 19440",
     "phone": "215-595-8736",
@@ -16,7 +16,7 @@
   },
   {
     "id": "T2",
-    "name": "TIGON Golf Carts — Ocean View, NJ",
+    "name": "TIGON Golf Carts \u2014 Ocean View, NJ",
     "shortName": "Ocean View, NJ",
     "address": "101 NJ-50, Ocean View, NJ 08230",
     "phone": "609-840-0404",
@@ -31,8 +31,8 @@
   },
   {
     "id": "T3",
-    "name": "TIGON Golf Carts — Long Pond, PA",
-    "shortName": "Long Pond, PA",
+    "name": "TIGON Golf Carts \u2014 Pocono-Long Pond, PA",
+    "shortName": "Pocono-Long Pond, PA",
     "address": "4738 PA-115, Long Pond, PA 18334",
     "phone": "570-580-0567",
     "lat": 41.053988,
@@ -43,23 +43,8 @@
     "pinterest": "https://www.pinterest.com/tigongolfcarts/long-pond-pennsylvania/"
   },
   {
-    "id": "T3.5",
-    "name": "TIGON Golf Carts — Pocono Pines, PA",
-    "shortName": "Pocono Pines, PA",
-    "address": "1712 Pennsylvania 940, Pocono Pines, PA 18350",
-    "phone": "570-643-0152",
-    "lat": 41.10286354605563,
-    "lng": -75.48758590250345,
-    "cid": "17137841834562046914",
-    "website": "https://tigongolfcarts.com/pocono/",
-    "facebook": "https://www.facebook.com/TigonGolfCartsPoconos/",
-    "youtube": "https://www.youtube.com/@TIGONGolfCartsPoconosPA",
-    "pinterest": "https://www.pinterest.com/tigongolfcarts/pocono-pines-pennsylvania/",
-    "review": "https://g.page/r/CcJL5i1Z2NXtEBM/review"
-  },
-  {
     "id": "T4",
-    "name": "TIGON Golf Carts — Dover, DE",
+    "name": "TIGON Golf Carts \u2014 Dover, DE",
     "shortName": "Dover, DE",
     "address": "5158 N Dupont Hwy, Dover, DE 19901",
     "phone": "302-546-0010",
@@ -74,7 +59,7 @@
   },
   {
     "id": "T5",
-    "name": "TIGON Golf Carts — Scranton / Wilkes-Barre, PA",
+    "name": "TIGON Golf Carts \u2014 Scranton / Wilkes-Barre, PA",
     "shortName": "Scranton, PA",
     "address": "1225 N Keyser Ave #2, Scranton, PA 18504",
     "phone": "570-344-4443",
@@ -89,7 +74,7 @@
   },
   {
     "id": "T6",
-    "name": "TIGON Golf Carts — Raleigh, NC",
+    "name": "TIGON Golf Carts \u2014 Raleigh, NC",
     "shortName": "Raleigh, NC",
     "address": "2700 S Wilmington St, Raleigh, NC 27603",
     "phone": "984-489-0296",
@@ -104,7 +89,7 @@
   },
   {
     "id": "T7",
-    "name": "TIGON Golf Carts — South Bend, IN",
+    "name": "TIGON Golf Carts \u2014 South Bend, IN",
     "shortName": "South Bend, IN",
     "address": "52129 State Road 933, South Bend, IN 46637",
     "phone": "574-703-0456",
@@ -119,7 +104,7 @@
   },
   {
     "id": "T8",
-    "name": "TIGON Golf Carts — Gloucester Point, VA",
+    "name": "TIGON Golf Carts \u2014 Gloucester Point, VA",
     "shortName": "Gloucester Point, VA",
     "address": "2810 George Washington Memorial Hwy, Gloucester Point, VA 23072",
     "phone": "804-792-0234",
@@ -133,7 +118,7 @@
   },
   {
     "id": "T9",
-    "name": "TIGON Golf Carts — Bayville, NJ",
+    "name": "TIGON Golf Carts \u2014 Bayville, NJ",
     "shortName": "Bayville, NJ",
     "address": "155 Atlantic City Blvd, Bayville, NJ 08721",
     "phone": "732-908-7166",
@@ -147,7 +132,7 @@
   },
   {
     "id": "T10",
-    "name": "TIGON Golf Carts — Waretown, NJ",
+    "name": "TIGON Golf Carts \u2014 Waretown, NJ",
     "shortName": "Waretown, NJ",
     "address": "526 US-9, Waretown, NJ 08758",
     "phone": "732-998-8146",
@@ -161,7 +146,7 @@
   },
   {
     "id": "T11",
-    "name": "TIGON Golf Carts — Orangeburg, SC",
+    "name": "TIGON Golf Carts \u2014 Orangeburg, SC",
     "shortName": "Orangeburg, SC",
     "address": "4166 North Rd, Orangeburg, SC 29118",
     "phone": "803-596-0246",
@@ -175,7 +160,7 @@
   },
   {
     "id": "T12",
-    "name": "TIGON Golf Carts — Swanton, OH",
+    "name": "TIGON Golf Carts \u2014 Swanton, OH",
     "shortName": "Swanton, OH",
     "address": "10420 Airport Hwy, Swanton, OH 43558",
     "phone": "419-402-8400",
@@ -190,7 +175,7 @@
   },
   {
     "id": "T13",
-    "name": "TIGON Golf Carts — Lecanto, FL",
+    "name": "TIGON Golf Carts \u2014 Lecanto, FL",
     "shortName": "Lecanto, FL",
     "address": "299 E. Gulf to Lake Hwy, Lecanto, FL 34461",
     "phone": "352-453-0345",
@@ -205,7 +190,7 @@
   },
   {
     "id": "T14",
-    "name": "TIGON Golf Carts — Rio Grande, NJ",
+    "name": "TIGON Golf Carts \u2014 Rio Grande, NJ",
     "shortName": "Rio Grande, NJ",
     "address": "1304 NJ-47 B, Rio Grande, NJ 08242",
     "phone": "609-551-0234",
@@ -218,22 +203,8 @@
     "review": "https://g.page/r/CbNa_OaPmm_yEBM/review"
   },
   {
-    "id": "T15",
-    "name": "TIGON Golf Carts — Pleasantville, NJ",
-    "shortName": "Pleasantville, NJ",
-    "address": "7000 Black Horse Pike, Pleasantville, NJ 08232",
-    "phone": "640-444-3094",
-    "lat": 39.38812835576412,
-    "lng": -74.5186949022294,
-    "cid": "7635149767591436869",
-    "website": "https://tigongolfcarts.com/pleasantville/",
-    "facebook": "https://www.facebook.com/TigonGolfCartPleasantville",
-    "pinterest": "https://www.pinterest.com/tigongolfcarts/pleasantville-new-jersey/",
-    "review": "https://g.page/r/CUWiMchCgPVpEBM/review"
-  },
-  {
     "id": "T16",
-    "name": "TIGON Golf Carts — Portsmouth, VA",
+    "name": "TIGON Golf Carts \u2014 Portsmouth, VA",
     "shortName": "Portsmouth, VA",
     "address": "2008 Portsmouth Blvd, Portsmouth, VA 23704",
     "phone": "757-977-0146",
@@ -248,7 +219,7 @@
   },
   {
     "id": "T17",
-    "name": "TIGON Golf Carts — Virginia Beach, VA",
+    "name": "TIGON Golf Carts \u2014 Virginia Beach, VA",
     "shortName": "Virginia Beach, VA",
     "address": "1101 Virginia Beach Blvd, Virginia Beach, VA 23451",
     "phone": "1-844-844-6638",
