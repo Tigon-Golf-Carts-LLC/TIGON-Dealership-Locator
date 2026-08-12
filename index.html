@@ -360,6 +360,19 @@
     }
     .rate-input:focus { border-color: var(--blue-light); }
     .rate-note { font-size: 0.78rem; color: var(--text-muted); flex: 1; }
+    /* QUOTE MODE SEGMENTED CONTROL */
+    .quote-modes {
+      display: flex; gap: 4px; background: var(--card);
+      border: 1px solid var(--border); border-radius: 999px; padding: 4px;
+    }
+    .qmode-btn {
+      flex: 1; padding: 11px 8px; border: none; background: transparent;
+      color: var(--text-muted); font-family: 'DM Sans', sans-serif;
+      font-size: 0.84rem; font-weight: 600; border-radius: 999px;
+      cursor: pointer; transition: background 0.2s, color 0.2s; -webkit-appearance: none;
+    }
+    .qmode-btn.active { background: var(--red); color: #fff; }
+    .rate-suffix { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; flex: 1; }
     #calcBtn {
       display: flex; align-items: center; justify-content: center; gap: 8px;
       background: var(--red); color: #fff;
@@ -373,8 +386,8 @@
     #calcBtn.loading { pointer-events: none; background: var(--red-dim); }
     #calcBtn svg { width: 18px; height: 18px; }
     /* RESULT CARD */
-    #quoteResult { display: none; }
-    #quoteResult.visible { display: block; }
+    #quoteResult, #quoteResultPickup { display: none; }
+    #quoteResult.visible, #quoteResultPickup.visible { display: block; }
     .result-card {
       background: var(--card); border: 1px solid var(--border);
       border-radius: var(--radius); overflow: hidden;
@@ -419,8 +432,8 @@
     .quote-error { background: rgba(174,25,50,0.1); border: 1px solid rgba(174,25,50,0.3); border-radius: var(--radius-sm); padding: 12px 14px; font-size: 0.84rem; color: #ff7a8a; display: none; }
     .quote-error.visible { display: block; }
     @media print {
-      header, .view-tabs, .quote-actions, #calcBtn, .quote-card:not(.result-card) { display: none !important; }
-      #quoteResult { display: block !important; }
+      header, .view-tabs, .quote-modes, .quote-actions, #calcBtn, .quote-card:not(.result-card) { display: none !important; }
+      #quoteResult.visible, #quoteResultPickup.visible { display: block !important; }
       body { background: #fff; color: #000; }
     }
 
@@ -524,6 +537,11 @@
   <section id="quoteView">
     <div class="quote-wrap">
 
+      <div class="quote-modes">
+        <button class="qmode-btn active" id="qmodeRentals" onclick="switchQuoteMode('rentals')">Rentals</button>
+        <button class="qmode-btn" id="qmodePickup" onclick="switchQuoteMode('pickup')">Cart Pick Up &amp; Delivery</button>
+      </div>
+
       <div>
         <div class="quote-section-label">Customer Address</div>
         <div class="quote-card">
@@ -542,8 +560,8 @@
         </div>
       </div>
 
-      <div>
-        <div class="quote-section-label">Delivery Rate</div>
+      <div id="rentalFields">
+        <div class="quote-section-label">Rental Delivery Rate</div>
         <div class="quote-card">
           <div class="rate-row">
             <span class="rate-prefix">$</span>
@@ -553,9 +571,25 @@
         </div>
       </div>
 
+      <div id="pickupFields" style="display:none">
+        <div class="quote-section-label">Pick Up &amp; Delivery Rates</div>
+        <div class="quote-card">
+          <div class="rate-row">
+            <span class="rate-prefix">$</span>
+            <input id="dotFeeInput" class="rate-input" type="number" value="100" min="0" step="5" />
+            <span class="rate-suffix">flat DOT fee &mdash; applied once per job</span>
+          </div>
+          <div class="rate-row" style="margin-top:14px">
+            <span class="rate-prefix">$</span>
+            <input id="blockRateInput" class="rate-input" type="number" value="50" min="0" step="5" />
+            <span class="rate-suffix">per 30 min of drive time &mdash; rounded up</span>
+          </div>
+        </div>
+      </div>
+
       <div class="quote-error" id="quoteError"></div>
 
-      <button id="calcBtn" onclick="calcDelivery()">
+      <button id="calcBtn" onclick="calcQuote()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
           <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
         </svg>
@@ -591,6 +625,54 @@
             <div class="result-row total-row" style="background:rgba(17,73,116,0.08)">
               <div class="result-row-label">Round Trip Delivery Price<small id="rRateNote2"></small></div>
               <div class="result-row-val" id="rRoundPrice" style="color:#5fa8d8">—</div>
+            </div>
+          </div>
+          <div class="quote-actions">
+            <button class="btn-print" onclick="window.print()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Print Quote
+            </button>
+            <button class="btn-recalc" onclick="resetQuote()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M3 12a9 9 0 019-9 9.75 9.75 0 016.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+              New Quote
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULT — PICK UP & DELIVERY -->
+      <div id="quoteResultPickup">
+        <div class="result-card">
+          <div class="result-header">
+            <div class="result-header-label">📍 Picking Up From</div>
+            <div class="result-dealer-name" id="pDealerName"></div>
+            <div class="result-address" id="pDealerAddr"></div>
+          </div>
+          <div class="result-customer">
+            <div class="result-customer-label">🏠 Delivering To</div>
+            <div class="result-customer-addr" id="pCustomerAddr"></div>
+          </div>
+          <div class="result-rows">
+            <div class="result-row highlight-blue">
+              <div class="result-row-label">One-Way Drive Time<small>Dealer → Customer</small></div>
+              <div class="result-row-val" id="pOneTime">— <span>time</span></div>
+            </div>
+            <div class="result-row">
+              <div class="result-row-label">Round Trip Drive Time<small>Including return</small></div>
+              <div class="result-row-val" id="pRoundTime">— <span>time</span></div>
+            </div>
+            <div class="result-row">
+              <div class="result-row-label">Flat DOT Fee<small>Applied once per job</small></div>
+              <div class="result-row-val" id="pDotFee">—</div>
+            </div>
+            <div class="result-divider"></div>
+            <div class="result-row highlight total-row">
+              <div class="result-row-label">One-Way Total<small id="pNote1"></small></div>
+              <div class="result-row-val" id="pOnePrice">—</div>
+            </div>
+            <div class="result-row total-row" style="background:rgba(17,73,116,0.08)">
+              <div class="result-row-label">Round Trip Total<small id="pNote2"></small></div>
+              <div class="result-row-val" id="pRoundPrice" style="color:#5fa8d8">—</div>
             </div>
           </div>
           <div class="quote-actions">
@@ -825,6 +907,32 @@ function populateDealerSelect(){
   }
 }
 
+// ── QUOTE MODE (Rentals vs Cart Pick Up & Delivery) ──
+let quoteMode='rentals';
+function switchQuoteMode(mode){
+  quoteMode=mode;
+  document.getElementById('qmodeRentals').classList.toggle('active',mode==='rentals');
+  document.getElementById('qmodePickup').classList.toggle('active',mode==='pickup');
+  document.getElementById('rentalFields').style.display=mode==='rentals'?'block':'none';
+  document.getElementById('pickupFields').style.display=mode==='pickup'?'block':'none';
+  document.getElementById('quoteResult').classList.remove('visible');
+  document.getElementById('quoteResultPickup').classList.remove('visible');
+  document.getElementById('quoteError').classList.remove('visible');
+}
+
+function calcQuote(){
+  if(quoteMode==='pickup') calcPickup();
+  else calcDelivery();
+}
+
+// Format minutes as "1 hr 12 min" / "45 min"
+function fmtTime(min){
+  const m=Math.round(min);
+  if(m<60) return `${m} min`;
+  const h=Math.floor(m/60), r=m%60;
+  return r?`${h} hr ${r} min`:`${h} hr`;
+}
+
 function calcDelivery(){
   const addrInput=document.getElementById('customerAddr').value.trim();
   const dealerIdx=document.getElementById('dealerSelect').value;
@@ -877,8 +985,64 @@ function calcDelivery(){
   });
 }
 
+function calcPickup(){
+  const addrInput=document.getElementById('customerAddr').value.trim();
+  const dealerIdx=document.getElementById('dealerSelect').value;
+  const dotFee=parseFloat(document.getElementById('dotFeeInput').value)||0;
+  const blockRate=parseFloat(document.getElementById('blockRateInput').value)||0;
+  const errEl=document.getElementById('quoteError');
+  errEl.classList.remove('visible');
+
+  if(!addrInput){ errEl.textContent='Please enter a customer address.'; errEl.classList.add('visible'); return; }
+  if(dealerIdx===''){ errEl.textContent='Please select a TIGON dealership.'; errEl.classList.add('visible'); return; }
+  if(!mapReady||!window.google){ errEl.textContent='Maps not loaded yet. Please wait a moment and try again.'; errEl.classList.add('visible'); return; }
+
+  const dealer=DEALERS[parseInt(dealerIdx)];
+  const btn=document.getElementById('calcBtn');
+  btn.innerHTML='<div class="spinner"></div> Calculating...';
+  btn.classList.add('loading');
+
+  const service=new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix({
+    origins:[dealer.address],
+    destinations:[addrInput],
+    travelMode:google.maps.TravelMode.DRIVING,
+    unitSystem:google.maps.UnitSystem.IMPERIAL,
+  },(resp,status)=>{
+    btn.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg> Calculate Delivery Quote`;
+    btn.classList.remove('loading');
+
+    if(status!=='OK'||!resp.rows[0].elements[0]||resp.rows[0].elements[0].status!=='OK'||!resp.rows[0].elements[0].duration){
+      errEl.textContent='Could not calculate route. Check the address and try again.';
+      errEl.classList.add('visible'); return;
+    }
+
+    const el=resp.rows[0].elements[0];
+    const oneMin=el.duration.value/60;   // seconds → minutes
+    const roundMin=oneMin*2;
+    const blocksOne=Math.max(1,Math.ceil(oneMin/30));
+    const blocksRound=Math.max(1,Math.ceil(roundMin/30));
+    const onePrice=dotFee+blockRate*blocksOne;
+    const roundPrice=dotFee+blockRate*blocksRound;
+
+    document.getElementById('pDealerName').textContent=dealer.shortName;
+    document.getElementById('pDealerAddr').textContent=dealer.address;
+    document.getElementById('pCustomerAddr').textContent=addrInput;
+    document.getElementById('pOneTime').innerHTML=`${fmtTime(oneMin)}<span>one-way</span>`;
+    document.getElementById('pRoundTime').innerHTML=`${fmtTime(roundMin)}<span>round trip</span>`;
+    document.getElementById('pDotFee').innerHTML=`$${dotFee.toFixed(2)}<span>flat</span>`;
+    document.getElementById('pOnePrice').innerHTML=`$${onePrice.toFixed(2)}<span>one-way</span>`;
+    document.getElementById('pRoundPrice').innerHTML=`$${roundPrice.toFixed(2)}<span>round trip</span>`;
+    document.getElementById('pNote1').textContent=`$${dotFee.toFixed(0)} DOT + ${blocksOne} × $${blockRate.toFixed(0)}/30min`;
+    document.getElementById('pNote2').textContent=`$${dotFee.toFixed(0)} DOT + ${blocksRound} × $${blockRate.toFixed(0)}/30min`;
+    document.getElementById('quoteResultPickup').classList.add('visible');
+    document.getElementById('quoteResultPickup').scrollIntoView({behavior:'smooth',block:'start'});
+  });
+}
+
 function resetQuote(){
   document.getElementById('quoteResult').classList.remove('visible');
+  document.getElementById('quoteResultPickup').classList.remove('visible');
   document.getElementById('customerAddr').value='';
   document.getElementById('quoteError').classList.remove('visible');
 }
