@@ -1,0 +1,8 @@
+name = "tigon-dealership-locator"
+compatibility_date = "2025-08-01"
+
+# This project is a static site (HTML, JSON, images) with no server-side code.
+# The [assets] block tells Cloudflare Workers to serve the repository's files
+# directly as static assets, with index.html served at the site root.
+[assets]
+directory = "."
